@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 import { Alert, AlertTitle, IconButton, Tooltip } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import axios from "axios";
-
+import { useRouter } from "next/navigation";
 const style = {
   position: "absolute" as "absolute",
   top: "50%",
@@ -20,6 +20,7 @@ const style = {
 };
 
 export default function BoxAgendarBanca(props: any) {
+  const router = useRouter();
   const [error, setError] = useState(null);
   const [professores, setProfessores] = useState([]);
   const [banca, setBanca] = useState([]);
@@ -215,7 +216,7 @@ export default function BoxAgendarBanca(props: any) {
       console.error("Erro ao atualizar status do aluno:", error);
     }
     limparFormulario();
-    window.location.href = `/aluno/DadosConfirmados?token=${props.token}`;
+    router.push(`/aluno/DadosConfirmados?token=${props.token}`);
   };
 
   useEffect(() => {

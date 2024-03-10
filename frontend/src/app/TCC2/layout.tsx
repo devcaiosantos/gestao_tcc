@@ -7,6 +7,7 @@ import { AuthProvider } from "@/contexts/AuthContext";
 import { parseCookies } from "nookies";
 import { useEffect } from "react";
 import { getAPIClient } from "@/services/axios";
+import { useRouter } from "next/navigation";
 
 const inter = Inter({ subsets: ["latin"] });
 let token: any;
@@ -16,6 +17,8 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const router = useRouter();
+
   useEffect(() => {
     const fetchData = async () => {
       const { ["TCC.token"]: token } = parseCookies();
@@ -24,11 +27,11 @@ export default function RootLayout({
         const response = await fetch(apiUrl);
         const verify = await response.json();
         if (!verify) {
-          window.location.href = "/";
+          router.push("/");
           return;
         }
         if (!token) {
-          window.location.href = "/";
+          router.push("/")
           return;
         }
 

@@ -4,8 +4,10 @@ import axios from "axios";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Box } from "@mui/material";
+import { useRouter } from "next/navigation";
 
 export default function RequisitarProfessor() {
+  const router = useRouter();
   const [aluno, setAluno] = useState(null);
   const [professorInfo, setProfessorInfo] = useState({
     nome: "",
@@ -55,7 +57,7 @@ export default function RequisitarProfessor() {
     } catch (error) {
       console.error("Erro ao requisitar professor:", error);
     }
-    window.location.href = `/aluno/DadosConfirmados?token=${token}`;
+    router.push(`/aluno/DadosConfirmados?token=${token}`);
   }
 
   function handleInputChange(event) {

@@ -10,8 +10,10 @@ import { Button } from "@mui/material";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import CloseIcon from "@mui/icons-material/Close";
 import { workspaceService } from "@/components/Workspace";
+import { useRouter } from "next/navigation";
 
 export default function DefinirOrientador() {
+  const router = useRouter();
   const searchParams = useSearchParams();
   const token = searchParams.get("token");
   const urlRA = `http://localhost:3333/alunoAuth/ra-token/${token}`;
@@ -89,7 +91,7 @@ export default function DefinirOrientador() {
       });
       if (response.ok) {
         setIsLoading(false);
-        window.location.href = `/aluno/DadosConfirmados?token=${token}`;
+        router.push(`/aluno/DadosConfirmados?token=${token}`);
       } else {
         setError("Erro ao editar o campo");
         setIsLoading(false);
