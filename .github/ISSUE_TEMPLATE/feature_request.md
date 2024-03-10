@@ -1,19 +1,21 @@
----
-name: Feature Request
-about: Suggest a new feature or improvement
+**Descrição:**
+Uma breve descrição do problema, nova funcionalidade ou tarefa a ser tratada nesta issue.
 
----
+**Objetivo:**
+Qual é o objetivo geral desta issue? Explique por que essa tarefa é importante para o projeto.
 
-## Feature Request
+**Passos / Tarefas:**
+- [ ] Detalhe os passos específicos necessários para concluir esta issue.
+- [ ] Liste as tarefas em ordem lógica.
+- [ ] Marque cada tarefa com um checkbox conforme for sendo completada.
 
-**Is your feature request related to a problem? Please describe.**
-A clear and concise description of what the problem is. Ex. I'm always frustrated when [...]
+**Critérios de Aceitação:**
+- [ ] Descreva os critérios que devem ser atendidos para considerar esta issue concluída.
+- [ ] Isso pode incluir requisitos mínimos, testes a serem executados ou padrões a serem seguidos.
 
-**Describe the solution you'd like**
-A clear and concise description of what you want to happen.
+**Responsáveis:**
+- @nome_do_responsável
+- @outro_nome_do_responsável (se aplicável)
 
-**Describe alternatives you've considered**
-A clear and concise description of any alternative solutions or features you've considered.
-
-**Additional context**
-Add any other context or screenshots about the feature request here.
+**Observações (opcional):**
+Qualquer outra informação que você deseja adicionar à issue.

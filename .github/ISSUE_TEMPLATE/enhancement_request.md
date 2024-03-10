@@ -1,19 +1,21 @@
----
-name: Enhancement Request
-about: Suggest an enhancement or improvement for the project
----
+**Descrição:**
+Uma breve descrição do problema, nova funcionalidade ou tarefa a ser tratada nesta issue.
 
-## Description
-A clear and concise description of the enhancement you are suggesting.
+**Objetivo:**
+Qual é o objetivo geral desta issue? Explique por que essa tarefa é importante para o projeto.
 
-## Current Behavior
-A description of the current behavior or functionality that you would like to see improved.
+**Passos / Tarefas:**
+- [ ] Detalhe os passos específicos necessários para concluir esta issue.
+- [ ] Liste as tarefas em ordem lógica.
+- [ ] Marque cada tarefa com um checkbox conforme for sendo completada.
 
-## Desired Behavior
-A description of the desired behavior or functionality after the enhancement is implemented.
+**Critérios de Aceitação:**
+- [ ] Descreva os critérios que devem ser atendidos para considerar esta issue concluída.
+- [ ] Isso pode incluir requisitos mínimos, testes a serem executados ou padrões a serem seguidos.
 
-## Possible Implementation
-Optional: A suggestion or idea for how the enhancement could be implemented.
+**Responsáveis:**
+- @nome_do_responsável
+- @outro_nome_do_responsável (se aplicável)
 
-## Additional Context
-Optional: Any additional context or screenshots that may be helpful in understanding the enhancement request.
+**Observações (opcional):**
+Qualquer outra informação que você deseja adicionar à issue.

@@ -1,23 +1,34 @@
----
-name: Bug Report
-about: Create a report to help us improve
+**Descrição:**
 
----
+Descreva detalhadamente o bug, incluindo passos para reproduzi-lo e o comportamento esperado
 
-## Describe the Bug
-A clear and concise description of what the bug is.
+**Passos para Reprodução:**
+1. [Descreva o primeiro passo para reproduzir o bug]
+2. [Descreva o segundo passo para reproduzir o bug]
+3. ...
 
-## Steps to Reproduce
-1. Go to '...'
-2. Click on '....'
-3. Scroll down to '....'
-4. See error
+**Screenshots/Anexos:**
+Se aplicável, adicione capturas de tela ou outros anexos que possam ajudar a entender o problema
 
-## Expected Behavior
-A clear and concise description of what you expected to happen.
+**Logs/Erros:**
+Se aplicável, inclua qualquer mensagem de erro ou logs relevantes
 
-## Screenshots
-If applicable, add screenshots to help explain your problem.
+**Contexto Adicional(opcional):** 
+Adicione qualquer informação adicional que possa ser relevante para entender ou resolver o bug
 
-## Additional Context
-Add any other context about the problem here.
+**Passos Tentados para Solução (opcional):**
+Descreva quaisquer soluções ou tentativas que você tenha feito para resolver o problema
+
+**Prioridade:**
+Defina a prioridade do bug - baixa, média, alta, crítica
+
+**Critérios de Aceitação:**
+ - [ ] O bug não está mais presente no sistema.
+ - [ ] Nenhuma regressão foi introduzida pela correção.
+ - [ ] Os testes foram executados com sucesso
+
+**Responsáveis:**
+- @nome_do_responsável
+
+**Observações (opcional):**
+Inclua qualquer observação adicional que possa ser útil
