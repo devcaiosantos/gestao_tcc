@@ -5,19 +5,19 @@ import { Inter } from "next/font/google";
 import { AuthProvider } from "@/contexts/AuthContext";
 import React, { useEffect } from "react";
 import { useSearchParams } from "next/navigation";
-
+import { useRouter } from "next/navigation";
 const inter = Inter({ subsets: ["latin"] });
-
 
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const router = useRouter();
   const searchParams = useSearchParams();
   const token = searchParams.get("token");
   if (!token) {
-    window.location.href = "/erro/404";
+    router.push("/erro/404");
     return null;
   }
 
@@ -28,18 +28,18 @@ export default function RootLayout({
         const response = await fetch(apiUrl);
 
         if (!response.ok) {
-          window.location.href = "/erro/404";
+          router.push("/erro/404");
           return;
         }
 
         const verify = await response.json();
 
         if (!verify) {
-          window.location.href = "/erro/404";
+          router.push("/erro/404");
         }
       } catch (error) {
         console.error("Erro ao verificar token:", error);
-        window.location.href = "/erro/404";
+        router.push("/erro/404");
       }
     };
 

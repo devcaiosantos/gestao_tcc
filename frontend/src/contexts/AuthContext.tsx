@@ -3,7 +3,7 @@ import { createContext, useEffect, useState } from "react";
 import { setCookie, parseCookies } from 'nookies'
 import { api } from "../services/api";
 import axios from "axios";
-
+import {useRouter} from 'next/navigation'
 type SignInData = {
   login: string;
   senha: string;
@@ -22,7 +22,7 @@ export const AuthContext = createContext({} as AuthContextType);
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState<User | null>(null);
-
+  const router = useRouter();
   const isAuthenticated = !!user;
 
   useEffect(() => {
@@ -57,8 +57,7 @@ export function AuthProvider({ children }) {
     api.defaults.headers["Authorization"] = `Bearer ${token}`;
 
     setUser(user);
-
-    window.location.href = "/TCC1/matricular";
+    router.push("/TCC1/matricular");
   }
 
   return (

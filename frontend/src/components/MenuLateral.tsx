@@ -22,7 +22,7 @@ import BarChartRoundedIcon from "@mui/icons-material/BarChartRounded";
 import ExitToAppRoundedIcon from "@mui/icons-material/ExitToAppRounded";
 import { ListItemButton, ListItemIcon, ListItemText } from "@mui/material";
 import Workspace from "./Workspace";
-
+import { useRouter } from "next/navigation";
 const drawerWidth: number = 280;
 
 interface AppBarProps extends MuiAppBarProps {
@@ -79,11 +79,12 @@ const defaultTheme = createTheme();
 
 export default function MenuLateral(props: any) {
   const [open, setOpen] = React.useState(true);
+  const router = useRouter();
 
   const handleLogout = () => {
     document.cookie =
       "TCC.token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-    window.location.href = "/";
+   router.push("/");
   };
 
   const toggleDrawer = () => {
