@@ -85,7 +85,7 @@ export default function BoxAgendarBanca(props: any) {
     fetchData();
   }, [props.data, props.ra]);
 
-  const handleProfessorChange = (e, index) => {
+  const handleProfessorChange = (e: React.ChangeEvent<HTMLInputElement>, index: number) => {
     const updatedSelectedProfessores = [...selectedProfessores];
     updatedSelectedProfessores[index] = e.target.value;
     setSelectedProfessores(updatedSelectedProfessores);
@@ -125,29 +125,6 @@ export default function BoxAgendarBanca(props: any) {
 
   const onChangeInput = (e) =>
     setContent({ ...content, [e.target.name]: e.target.value });
-
-  const excluirBanca = async () => {
-    await axios.delete(`http://localhost:3333/bancas_professores/${banca.id}`);
-    await axios.delete(`http://localhost:3333/bancas/${banca.id}`);
-    await fetch(`http://localhost:3333/tcc/${props.ra}/${workspace}`, {
-      method: "PUT",
-      body: JSON.stringify({ status: "Orientador_Definido" }),
-      headers: { "Content-Type": "application/json" },
-    });
-    await fetch("http://localhost:3333/historico", {
-      method: "POST",
-      body: JSON.stringify({
-        aluno: parseInt(props.ra),
-        workspace: workspace,
-        Etapa: "TCC1",
-        orientador: props.orientador,
-        status_processo: "Orientador_Definido",
-      }),
-      headers: { "Content-Type": "application/json" },
-    });
-    limparFormulario();
-    location.reload();
-  };
 
   const cadastrarBanca = async (e) => {
     e.preventDefault();

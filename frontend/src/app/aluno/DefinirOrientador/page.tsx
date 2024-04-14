@@ -1,8 +1,8 @@
 "use client";
-import { Alert, AlertTitle, Box } from "@mui/material";
+import { Alert, AlertTitle, Box, Checkbox } from "@mui/material";
 import axios from "axios";
 import { useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { ChangeEvent, ChangeEventHandler, useEffect, useState } from "react";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
@@ -27,14 +27,17 @@ export default function DefinirOrientador() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [value, setValue] = useState(0);
+  const [possuiCoorientador, setPossuiCoorientador] = useState(false);
 
-  const handleChange1 = (event: SelectChangeEvent) => {
+  const handleChange1 = (event: ChangeEvent<HTMLInputElement>) => {
     setOrientador(event.target.value as string);
   };
 
-  const handleChange2 = (event: SelectChangeEvent) => {
+  const handleChange2 = (event: ChangeEvent<HTMLInputElement>) => {
     setCoorientador(event.target.value as string);
   };
+
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -55,6 +58,12 @@ export default function DefinirOrientador() {
 
     fetchData();
   }, [urlRA, value.ativo]);
+
+  useEffect(() => {
+    if(!possuiCoorientador){
+      setCoorientador("");      
+    }
+  }, [possuiCoorientador]);
 
   const handleSubmit = async () => {
     if (orientador === "") {
@@ -127,60 +136,104 @@ export default function DefinirOrientador() {
         <p className="font-semibold text-[var(--third-color)] text-xl">
           Informe seu orientador de TCC
         </p>
-        <FormControl fullWidth className="mt-8">
-          <InputLabel
-            id="demo-simple-select-helper-label"
-            className="font-bold text-xl"
-          >
-            Orientador
-          </InputLabel>
-          <Select
-            labelId="demo-simple-select-helper"
-            id="demo-simple-select"
-            value={orientador}
-            label="--Orientador--"
-            onChange={handleChange1}
-            required
-          >
-            {professor ? (
-              professor
-                .filter((prof: any) => prof.departamento === "DACOM")
-                .map((prof: any) => (
-                  <MenuItem value={prof.id} key={prof.id}>
-                    {prof.nome}
-                  </MenuItem>
-                ))
-            ) : (
-              <></>
-            )}
-          </Select>
-          <InputLabel
-            id="demo-simple-select-helper-label2"
-            className="font-bold text-xl mt-20"
-          >
-            Coorientador
-          </InputLabel>
-          <Select
-            className="mt-6"
-            labelId="demo-simple-select-helper2"
-            id="demo-simple-select2"
-            value={coorientador}
-            label="--Coorientador--"
-            onChange={handleChange2}
-          >
-            <MenuItem value="0">Não tenho coorientador</MenuItem>
-            {professor ? (
-              professor
-                .filter((prof: any) => prof.departamento === "DACOM")
-                .map((prof: any) => (
-                  <MenuItem value={prof.id} key={prof.id}>
-                    {prof.nome}
-                  </MenuItem>
-                ))
-            ) : (
-              <></>
-            )}
-          </Select>
+        <div style={{
+          width: "100%",
+          marginTop: "20px"
+        }}>
+          <div style={{
+            display: "flex",
+            flexDirection: "column"
+          }}>
+            <label
+              style={{
+                fontWeight: "bold",
+                fontSize: "1.2rem",
+                marginBottom: "5px"
+              }}
+            >
+              Orientador
+            </label>
+            <select
+              style={{
+                padding: "10px",
+                borderRadius: "5px",
+                border: "1px solid #ccc",
+                marginBottom: "10px"
+              }}
+              value={orientador}
+              onChange={handleChange1}
+            >
+              <option value={0}>Selecione um orientador</option>
+              {professor &&
+                professor.map((prof: any, index:number) =>{
+                  if(prof.departamento == "DACOM"){
+                    return <option key={index} value={prof.id}>{prof.nome}</option>
+                  }
+                } 
+              )}
+            </select>
+          </div>
+        
+          <div style={{
+            display: "flex",
+            flexDirection: "row"
+          }}>
+            <label
+              style={{
+                fontWeight: "bold",
+                fontSize: "1.0rem",
+                marginBottom: "5px"
+              }}
+            >
+              Possui coorientador?
+            </label>
+            <input 
+              type="checkbox"
+              style={{
+                transform: "scale(1.2)",
+                marginLeft: "10px"
+              }}
+              onChange={() => setPossuiCoorientador(!possuiCoorientador)}
+              checked={possuiCoorientador}
+            />
+          </div>
+          {
+            possuiCoorientador
+            &&
+            <div style={{
+              display: "flex",
+              flexDirection: "column"
+            }}>
+              <label 
+                style={{
+                  fontWeight: "bold",
+                  fontSize: "1.2rem",
+                  marginBottom: "5px"
+                }}
+              >
+                Coorientador
+              </label>
+              <select
+                style={{
+                  padding: "10px",
+                  borderRadius: "5px",
+                  border: "1px solid #ccc",
+                  marginBottom: "10px"
+                }}
+                value={coorientador}
+                onChange={handleChange2}
+              >
+                <option value={0}>Selecione um orientador</option>
+                {professor &&
+                  professor.map((prof: any, index:number) =>{
+                    if(prof.departamento == "DACOM"){
+                      return <option key={index} value={prof.id}>{prof.nome}</option>
+                    }
+                  } 
+                )}
+              </select>
+            </div>
+          }
           <div className="inline">
             <Button
               href={linkAddProfessor}
@@ -198,8 +251,8 @@ export default function DefinirOrientador() {
             >
               {isLoading ? "CARREGANDO..." : "  CONFIRMAR  "}
             </Button>
-          </div>
-        </FormControl>
+          </div>    
+        </div>
       </Box>
     </>
   );
